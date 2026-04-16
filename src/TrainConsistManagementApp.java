@@ -1,39 +1,39 @@
-import java.util.LinkedList;
-import java.util.List;
+import java.util.LinkedHashSet;
+import java.util.Scanner;
+import java.util.Set;
 
 public class TrainConsistManagementApp {
 
     public static void main(String[] args) {
 
+        Scanner sc = new Scanner(System.in);
+
         System.out.println("=======================================");
-        System.out.println("UC4 - Maintain Ordered Bogie Consist");
+        System.out.println("UC5 - Preserve Insertion Order of Bogies");
         System.out.println("=======================================\n");
 
-        List<String> trainConsist = new LinkedList<>();
+        // LinkedHashSet: maintains order + removes duplicates
+        Set<String> formation = new LinkedHashSet<>();
 
-        // Initial list
-        trainConsist.add("Engine");
-        trainConsist.add("Sleeper");
-        trainConsist.add("AC");
-        trainConsist.add("Cargo");
-        trainConsist.add("Guard");
+        System.out.print("Enter number of bogies to add: ");
+        int n = sc.nextInt();
+        sc.nextLine(); // consume newline
 
-        System.out.println("Initial Train Consist:");
-        System.out.println(trainConsist);
+        System.out.println("Enter bogie names:");
 
-        // Insert at position 2 (index 2)
-        trainConsist.add(2, "Pantry Car");
+        for (int i = 0; i < n; i++) {
+            String bogie = sc.nextLine();
+            formation.add(bogie); // duplicates automatically ignored
+        }
 
-        System.out.println("\nAfter Inserting 'Pantry Car' at position 2:");
-        System.out.println(trainConsist);
+        System.out.println("\nFinal Train Formation:");
+        System.out.println(formation);
 
-        // Remove first and last
-        trainConsist.remove(0);
-        trainConsist.remove(trainConsist.size() - 1);
+        System.out.println("\nNote:");
+        System.out.println("LinkedHashSet preserves insertion order and removes duplicates automatically.");
 
-        System.out.println("\nAfter Removing First and Last Bogie:");
-        System.out.println(trainConsist);
+        System.out.println("\nUC5 formation setup completed...");
 
-        System.out.println("\nUC4 ordered consist operations completed...");
+        sc.close();
     }
 }
