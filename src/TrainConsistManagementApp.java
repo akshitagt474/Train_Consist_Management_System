@@ -1,33 +1,44 @@
-import java.util.Arrays;
+import java.util.*;
 
 public class TrainConsistManagementApp {
 
     public static void main(String[] args) {
 
         System.out.println("==============================================");
-        System.out.println("UC17 - Sort Bogie Names Using Arrays.sort()");
+        System.out.println("UC18 - Linear Search for Bogie ID");
         System.out.println("==============================================");
 
-        // Step 1: Create array of bogie names
-        String[] bogieNames = {
-                "Sleeper",
-                "AC Chair",
-                "First Class",
-                "General",
-                "Luxury"
-        };
+        // Step 1: Create array of bogie IDs
+        String[] bogieIds = {"BG101", "BG205", "BG309", "BG412", "BG550"};
 
-        // Step 2: Display original array
-        System.out.println("\nOriginal Bogie Names:");
-        System.out.println(Arrays.toString(bogieNames));
+        // Step 2: Search key
+        String searchId = "BG309"; // change this to test
 
-        // Step 3: Sort using Arrays.sort()
-        Arrays.sort(bogieNames);
+        // Step 3: Display all bogies
+        System.out.println("\nAvailable Bogie IDs:");
+        for (String id : bogieIds) {
+            System.out.print(id + " ");
+        }
 
-        // Step 4: Display sorted array
-        System.out.println("\nSorted Bogie Names (Alphabetical):");
-        System.out.println(Arrays.toString(bogieNames));
+        // ===== LINEAR SEARCH =====
+        boolean found = false;
 
-        System.out.println("\nUC17 sorting completed...");
+        for (String id : bogieIds) {
+            if (id.equals(searchId)) {
+                found = true;
+                break; // stop when found
+            }
+        }
+
+        // Step 4: Result
+        System.out.println("\n\nSearching for: " + searchId);
+
+        if (found) {
+            System.out.println("Bogie ID FOUND in the train.");
+        } else {
+            System.out.println("Bogie ID NOT FOUND.");
+        }
+
+        System.out.println("\nUC18 search completed...");
     }
 }
