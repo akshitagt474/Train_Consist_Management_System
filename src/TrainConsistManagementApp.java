@@ -1,19 +1,27 @@
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Scanner;
+import java.util.*;
 
 public class TrainConsistManagementApp {
+
+    // Inner Bogie class
+    static class Bogie {
+        String name;
+        int capacity;
+
+        Bogie(String name, int capacity) {
+            this.name = name;
+            this.capacity = capacity;
+        }
+    }
 
     public static void main(String[] args) {
 
         Scanner sc = new Scanner(System.in);
 
         System.out.println("=======================================");
-        System.out.println("UC6 - Map Bogie to Capacity (HashMap)");
+        System.out.println("UC7 - Sort Bogies by Capacity (Comparator)");
         System.out.println("=======================================\n");
 
-        // HashMap: key = bogie name, value = capacity
-        Map<String, Integer> capacityMap = new HashMap<>();
+        List<Bogie> bogies = new ArrayList<>();
 
         System.out.print("Enter number of bogies: ");
         int n = sc.nextInt();
@@ -26,17 +34,25 @@ public class TrainConsistManagementApp {
             int capacity = sc.nextInt();
             sc.nextLine();
 
-            capacityMap.put(name, capacity);
+            bogies.add(new Bogie(name, capacity));
         }
 
-        System.out.println("\nBogie Capacity Details:");
-
-        // Iterate using entrySet()
-        for (Map.Entry<String, Integer> entry : capacityMap.entrySet()) {
-            System.out.println(entry.getKey() + " -> " + entry.getValue());
+        // Before Sorting
+        System.out.println("\nBefore Sorting:");
+        for (Bogie b : bogies) {
+            System.out.println(b.name + " -> " + b.capacity);
         }
 
-        System.out.println("\nUC6 bogie-capacity mapping completed...");
+        // Sorting using Comparator
+        bogies.sort(Comparator.comparingInt(b -> b.capacity));
+
+        // After Sorting
+        System.out.println("\nAfter Sorting by Capacity:");
+        for (Bogie b : bogies) {
+            System.out.println(b.name + " -> " + b.capacity);
+        }
+
+        System.out.println("\nUC7 sorting completed...");
 
         sc.close();
     }
