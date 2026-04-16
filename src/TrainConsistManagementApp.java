@@ -1,6 +1,6 @@
-import java.util.LinkedHashSet;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
-import java.util.Set;
 
 public class TrainConsistManagementApp {
 
@@ -9,30 +9,34 @@ public class TrainConsistManagementApp {
         Scanner sc = new Scanner(System.in);
 
         System.out.println("=======================================");
-        System.out.println("UC5 - Preserve Insertion Order of Bogies");
+        System.out.println("UC6 - Map Bogie to Capacity (HashMap)");
         System.out.println("=======================================\n");
 
-        // LinkedHashSet: maintains order + removes duplicates
-        Set<String> formation = new LinkedHashSet<>();
+        // HashMap: key = bogie name, value = capacity
+        Map<String, Integer> capacityMap = new HashMap<>();
 
-        System.out.print("Enter number of bogies to add: ");
+        System.out.print("Enter number of bogies: ");
         int n = sc.nextInt();
-        sc.nextLine(); // consume newline
+        sc.nextLine();
 
-        System.out.println("Enter bogie names:");
+        System.out.println("Enter bogie name and capacity:");
 
         for (int i = 0; i < n; i++) {
-            String bogie = sc.nextLine();
-            formation.add(bogie); // duplicates automatically ignored
+            String name = sc.nextLine();
+            int capacity = sc.nextInt();
+            sc.nextLine();
+
+            capacityMap.put(name, capacity);
         }
 
-        System.out.println("\nFinal Train Formation:");
-        System.out.println(formation);
+        System.out.println("\nBogie Capacity Details:");
 
-        System.out.println("\nNote:");
-        System.out.println("LinkedHashSet preserves insertion order and removes duplicates automatically.");
+        // Iterate using entrySet()
+        for (Map.Entry<String, Integer> entry : capacityMap.entrySet()) {
+            System.out.println(entry.getKey() + " -> " + entry.getValue());
+        }
 
-        System.out.println("\nUC5 formation setup completed...");
+        System.out.println("\nUC6 bogie-capacity mapping completed...");
 
         sc.close();
     }
